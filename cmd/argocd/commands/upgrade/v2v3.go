@@ -1,13 +1,9 @@
 package upgrade
 
-type V2V3 struct {
-	Recommendation
-}
+import "fmt"
 
-func newV2V3() IRecommendation {
-	return &V2V3{
-		Recommendation: Recommendation{
-			name: "Upgrade Recommendations v2 to v3",
-		},
-	}
+type V2V3Recommendation struct{}
+
+func (v *V2V3Recommendation) PrintRecommendation(u Upgrade) {
+	fmt.Printf("SERVER: %s\n", u.not(SERVER, 2.14))
 }

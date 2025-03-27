@@ -16,7 +16,7 @@ func NewUpgradeCmd(clientOpts *argocdclient.ClientOptions) *cobra.Command {
 
 	upgradeCmd := cobra.Command{
 		Use:   "upgrade",
-		Short: "Prints configuration changes recommended to prepare your Server for an upgrade",
+		Short: "Prints configuration changes recommended to prepare a server for an upgrade",
 		Example: fmt.Sprintf(`  # Print recommendations for upgrading server to the current client version (%s)
   argocd upgrade
 
@@ -31,7 +31,7 @@ func NewUpgradeCmd(clientOpts *argocdclient.ClientOptions) *cobra.Command {
 				clientVersion = tag
 			}
 
-			err := upgrade.PrintRecommendations(serverVersion, clientVersion)
+			err := upgrade.Run(serverVersion, clientVersion)
 			if err != nil {
 				errors.CheckError(err)
 			}
